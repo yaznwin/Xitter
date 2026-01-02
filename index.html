@@ -21,8 +21,12 @@
           <svg viewBox="0 0 24 24" aria-hidden="true" class="m-auto w-8 r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
         </div>
 
-        <ul class="flex flex-col text-xl space-y-3 md:pl-28 font-bold w-full"> 
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl font-bold"><span class="text-3xl material-symbols-outlined">home</span><span class="hidden md:block">Home</span></li>
+        <ul class="flex flex-col text-xl space-y-3 md:pl-28 w-full"> 
+<li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl font-bold">
+  <span class="text-3xl material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+  <span class="hidden md:block">Home</span>
+</li>
+
           <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">search</span><span class="hidden md:block">Explore</span></li>
           <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">notifications</span><span class="hidden md:block">Notifications</span></li>
           <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">mail</span><span class="hidden md:block">Messages</span></li>
@@ -84,7 +88,7 @@
         </div>
         
         <div class="w-full">
-          <input class="w-full h-10 mt-6 mb-3 outline-none text-xl" type="text" placeholder="What is happening?!">
+          <input id="postmakerinput" class="w-full h-10 mt-6 mb-3 outline-none text-xl" type="text" placeholder="How much can i sell my island for?">
           <div class="text-[#1d9bf0] flex items-center gap-1 font-bold ">
             <span class="material-symbols-outlined cursor-pointer">globe_asia</span>
             <span class="cursor-pointer">Everyone can reply</span>
@@ -103,7 +107,7 @@
             </div>
 
             <div class="postbtn mb-3">
-              <button class="bg-white text-black px-5 py-1 mx-5 mt-0 text-md rounded-full cursor-pointer font-bold">Post</button>
+              <button onclick="posttweet()" class="bg-white text-black px-5 py-1 mx-5 mt-0 text-md rounded-full cursor-pointer font-bold">Post</button>
             </div>
           </div>
         </div>
@@ -111,8 +115,18 @@
       </div>
       <hr class="h-[1px] w-full border-[#2f3336]">
 
-      <div class="posts"></div>
-        
+      <div id="posts" class="posts">
+        <div class="post">
+
+          
+        </div>
+
+
+        <!-- 2nd POST -->
+
+      </div>
+
+    </div>
 
     <!-- THIRD  -->
     <div class="third w-full hidden md:block sticky top-0">
@@ -288,7 +302,56 @@
     <script>
 const API = "https://sheetdb.io/api/v1/czn791c7cj9k4"
 const postsContainer = document.getElementById("posts")
+loadtimeline()
+setInterval(loadtimeline, 2000);
+async function posttweet() {
+  const text = document.getElementById("postmakerinput").value.trim();
+  if (!text) return alert("Write something first!");
 
+  const data = {
+    data: [
+      {
+        author: "Jeffery Epstein",        // or dynamic
+        username: "@JefferyEpstein",
+        time: greenwichtime(),
+        text: text,
+        pfp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10",
+        image: "",                   // empty unless you add uploads
+        comments: Math.floor(Math.random() * 5) + "K",
+        reposts: Math.floor(Math.random() * 40) + "K",
+        likes: Math.floor(Math.random() * 200) + "K",
+        views: Math.floor(Math.random() * 3000) + "K"
+      }
+    ]
+  };
+
+  await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  document.getElementById("postmakerinput").value = ""; // clear input
+  loadtimeline()
+}
+
+function greenwichtime() {
+  const now = new Date();
+
+  let year = now.getUTCFullYear();
+  let month = String(now.getUTCMonth() + 1).padStart(2, "0");
+  let day = String(now.getUTCDate()).padStart(2, "0");
+
+  let hours = now.getUTCHours();
+  let minutes = String(now.getUTCMinutes()).padStart(2, "0");
+
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // convert 0 → 12
+
+  return `${year}/${month}/${day} ${hours}:${minutes} ${ampm}`;
+}
+
+function loadtimeline() {
 fetch(API)
   .then(res => res.json())
   .then(posts => {
@@ -299,7 +362,7 @@ fetch(API)
       <div class="post">
         <div class="flex">
 
-          <div class="image w-[30%] m-4">
+          <div class="image w-[11%] m-4">
             <img class="rounded-full cursor-pointer"
                  src="${p.pfp}"
                  alt="pfp">
@@ -310,7 +373,7 @@ fetch(API)
               ${p.author}
             </span>
             <span class="text-gray-400">
-              @${p.username} · ${p.time}
+              ${p.username} · ${p.time}
             </span>
 
             <div>${p.text}</div>
@@ -358,6 +421,7 @@ fetch(API)
       `
     })
   })
+}
     </script>
 </body>
 </html>
