@@ -352,7 +352,12 @@ function greenwichtime() {
 }
 
 function loadtimeline() {
-fetch(API)
+fetch(API,{
+  redirect: "follow",
+  headers: {
+    "Content-Type": "text/plain;charset=utf-8",
+  },
+});
   .then(res => res.json())
   .then(posts => {
     postsContainer.innerHTML = ""
