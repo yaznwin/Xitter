@@ -350,80 +350,93 @@ function greenwichtime() {
 
   return `${year}/${month}/${day} ${hours}:${minutes} ${ampm}`;
 }
-
 function loadtimeline() {
-fetch(API)
-  .then(r => r.text()) 
-  .then(t => JSON.parse(t))
-  .then(res => res.json())
-  .then(posts => {
-    postsContainer.innerHTML = ""
+  fetch(API)
+    .then(res => res.json())
+    .then(posts => {
+      postsContainer.innerHTML = ""
 
-    posts.reverse().forEach(p => {
-      postsContainer.innerHTML += `
-      <div class="post">
-        <div class="flex">
+      posts.reverse().forEach(p => {
 
-          <div class="image w-[11%] m-4">
-            <img class="rounded-full cursor-pointer"
-                 src="${p.pfp}"
-                 alt="pfp">
-          </div>
+        // --- inline date formatting ---
+        const d = new Date(p.time)
+        const year = d.getFullYear()
+        const month = String(d.getMonth() + 1).padStart(2, "0")
+        const day = String(d.getDate()).padStart(2, "0")
 
-          <div class="content my-3">
-            <span class="font-bold hover:underline cursor-pointer">
-              ${p.author}
-            </span>
-            <span class="text-gray-400">
-              ${p.username} · ${p.time}
-            </span>
+        let hours = d.getHours()
+        const minutes = String(d.getMinutes()).padStart(2, "0")
+        const ampm = hours >= 12 ? "PM" : "AM"
+        hours = hours % 12 || 12
 
-            <div>${p.text}</div>
+        const formattedTime = `${year}/${month}/${day} ${hours}:${minutes} ${ampm}`
+        // --------------------------------
 
-            ${p.image ? `
-            <div class="postimg m-4 ml-0">
-              <img class="rounded-2xl"
-                   src="${p.image}"
-                   alt="post image">
+        postsContainer.innerHTML += `
+        <div class="post">
+          <div class="flex">
+
+            <div class="image w-[11%] m-4">
+              <img class="rounded-full cursor-pointer"
+                   src="${p.pfp}"
+                   alt="pfp">
             </div>
-            ` : ""}
 
-            <div class="icons flex m-3 justify-around">
+            <div class="content my-3">
+              <span class="font-bold hover:underline cursor-pointer">
+                ${p.author}
+              </span>
+              <span class="text-gray-400">
+                ${p.username} · ${formattedTime}
+              </span>
 
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">chat_bubble</span>${p.comments}
+              <div>${p.text}</div>
+
+              ${p.image ? `
+              <div class="postimg m-4 ml-0">
+                <img class="rounded-2xl"
+                     src="${p.image}"
+                     alt="post image">
               </div>
+              ` : ""}
 
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#28a745] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">repeat</span>${p.reposts}
+              <div class="icons flex m-3 justify-around">
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">chat_bubble</span>${p.comments}
+                </div>
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#28a745] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">repeat</span>${p.reposts}
+                </div>
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#dc3545] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">favorite</span>${p.likes}
+                </div>
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">bar_chart</span>${p.views}
+                </div>
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">bookmark</span>
+                </div>
+
+                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
+                  <span class="material-symbols-outlined">upload</span>
+                </div>
+
               </div>
-
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#dc3545] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">favorite</span>${p.likes}
-              </div>
-
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">bar_chart</span>${p.views}
-              </div>
-
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">bookmark</span>
-              </div>
-
-              <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                <span class="material-symbols-outlined">upload</span>
-              </div>
-
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
-      <hr class="h-[1px] w-full border-[#2f3336]">
-      `
+        <hr class="h-[1px] w-full border-[#2f3336]">
+        `
+      })
     })
-  })
 }
+
     </script>
 </body>
 </html>
