@@ -88,8 +88,10 @@
         </div>
         
         <div class="w-full">
+		<div>
           <input id="postmakerinput" class="w-full h-10 mt-6 mb-3 outline-none text-xl" type="text" placeholder="How much can i sell my island for?">
-          <div class="text-[#1d9bf0] flex items-center gap-1 font-bold ">
+		</div>
+          <div id="everyonecanreply" style="display: none;" class="text-[#1d9bf0] flex items-center gap-2 font-bold ">
             <span class="material-symbols-outlined cursor-pointer">globe_asia</span>
             <span class="cursor-pointer">Everyone can reply</span>
           </div>
@@ -107,19 +109,24 @@
             </div>
 
             <div class="postbtn mb-3">
-              <button onclick="posttweet()" class="bg-white text-black px-5 py-1 mx-5 mt-0 text-md rounded-full cursor-pointer font-bold">Post</button>
+              <button onclick="posttweet()" class="bg-white text-black px-5 py-1 mx-5 mt-0 text-md rounded-full cursor-pointer font-bold" style="width: 110px; text-align: center;">Post</button>
             </div>
           </div>
         </div>
         
       </div>
       <hr class="h-[1px] w-full border-[#2f3336]">
+	<div id="feedcontainer" style="overflow: hidden; display: flex; flex-direction: column; align-items: left;">
+		<div id="timelinethrobbingmymeatriser" style="display: block;">
+		<div id="timelinethrobbingmymeat" class="loading-circle" style="display: flex;"></div>
 
-      <div id="posts" class="posts">
+      <div id="posts" class="posts" style="position: relative;">
+
         <div class="post">
-
-          
         </div>
+
+	</div>
+		</div>
 
 
         <!-- 2nd POST -->
@@ -156,9 +163,9 @@
           <div class="flex justify-between">
             
             <div>
-              <div class="font-bold hover:underline">70 Years of SBI</div>
-              <div class="text-sm text-gray-500">SBI Celebrates Platinum Jubilee</div>
-              <div class="text-sm text-gray-500">Promoted by State Bank of India</div>       
+              <div class="font-bold hover:underline">70 Years of Agartha</div>
+              <div class="text-sm text-gray-500">Azerbaijan Technology CEO Celebrates 70 years of Agartha</div>
+              <div class="text-sm text-gray-500">Promoted by Palantir</div>       
             </div>
             <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>              
           </div>
@@ -168,8 +175,8 @@
           <div class="flex justify-between">
             
             <div>
-              <div class="text-sm text-gray-500">Trending in India</div>
-              <div class="font-bold hover:underline">#Jagannath Rathyatra</div>
+              <div class="text-sm text-gray-500">Trending in Agartha</div>
+              <div class="font-bold hover:underline">#RawMilk</div>
               <div class="text-sm text-gray-500">48.9k posts</div>
             </div>
             <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>            
@@ -181,7 +188,7 @@
 
             <div>
               <div class="text-sm text-gray-500">Sports · Trending</div>
-              <div class="font-bold hover:underline">#Thala</div>
+              <div class="font-bold hover:underline">#VWPoloRacing</div>
               <div class="text-sm text-gray-500">9,310 posts</div>
             </div>
             <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>
@@ -194,7 +201,7 @@
             
             <div>
               <div class="text-sm text-gray-500">Entertainment · Trending</div>
-              <div class="font-bold hover:underline">#ToxicTheMovie</div>
+              <div class="font-bold hover:underline">#GayNiggersFromOuterSpace</div>
               <div class="text-sm text-gray-500">2,310 posts</div>
             </div>
             <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>
@@ -300,11 +307,25 @@
     </div>
   </div>
     <script>
-const API = "https://script.google.com/macros/s/AKfycbwr2eMscfNYdaKqqqUAZwXlk1KSO3aR4IXg2JOBEpNXVu7sVrzeNbvPrYW0mdeIMMzH/exec"
+const API = "https://script.google.com/macros/s/AKfycbxctig21fEx-vxvkUi_YnHs0Uzo_y7Zqkkgfb55r53Tld1stJbK-FlgKce0YypBz1OX/exec"
 const postsContainer = document.getElementById("posts")
+const input = document.getElementById('postmakerinput');
+const target = document.getElementById('everyonecanreply');
+const throbber = document.getElementById('timelinethrobbingmymeatriser');
+const throbbercircle = document.getElementById('timelinethrobbingmymeat');
+input.addEventListener('focus', () => {
+  target.style.display = 'flex';
+});
+
 loadtimeline()
 setInterval(loadtimeline, 10000);
 async function posttweet() {
+  const btn = document.querySelector('.postbtn button');
+  const originalText = btn.innerText;
+  btn.innerText = "Posting...";
+  btn.style.backgroundColor = "#808080"; // Turn gray
+  btn.style.cursor = "not-allowed";      // Show it's busy
+  btn.disabled = true;
   const text = document.getElementById("postmakerinput").value.trim();
   if (!text) return alert("Write something first!");
 
@@ -317,21 +338,33 @@ async function posttweet() {
         text: text,
         pfp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10",
         image: "",                   // empty unless you add uploads
-        comments: Math.floor(Math.random() * 5) + "K",
-        reposts: Math.floor(Math.random() * 40) + "K",
+        comments: Math.floor(Math.random() * 10) + "K",
+        reposts: Math.floor(Math.random() * 150) + "K",
         likes: Math.floor(Math.random() * 200) + "K",
         views: Math.floor(Math.random() * 3000) + "K"
       }
     ]
   };
+const body = JSON.stringify(data)
 
-  await fetch(API, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+
+await fetch(API, {
+  method: 'POST',
+  mode: 'no-cors', // Essential for basic Web App requests to avoid CORS issues
+  cache: 'no-cache',
+  headers: {
+    'Content-Type': 'text/plain;charset=utf-8'
+  },
+  body: JSON.stringify(data)
+})
+.then(() => console.log('Data successfully sent'))
+.catch(error => console.error('Error!', error.message));
 
   document.getElementById("postmakerinput").value = ""; // clear input
+	btn.innerText = originalText;
+       btn.style.backgroundColor = ""; // Resets to the class color (white)
+       btn.style.cursor = "pointer";
+       btn.disabled = false;
   loadtimeline()
 }
 
@@ -351,6 +384,20 @@ function greenwichtime() {
   return `${year}/${month}/${day} ${hours}:${minutes} ${ampm}`;
 }
 function loadtimeline() {
+throbbercircle.style.display = 'block', 300
+throbber.animate(
+      [
+        { transform: 'translateY(-45px)' },   // Start position
+        { transform: 'translateY(0px)' }  // End position
+      ],
+      {
+        duration: 400,       // 2 seconds
+        iterations: 1, // Repeat forever
+        easing: 'ease-in-out' // Smooth acceleration/deceleration
+      }
+)
+console.log("meow")
+// throbber.style.display = 'blo';
   fetch(API)
     .then(res => res.json())
     .then(posts => {
@@ -358,7 +405,6 @@ function loadtimeline() {
 
       posts.reverse().forEach(p => {
 
-        // --- inline date formatting ---
         const d = new Date(p.time)
         const year = d.getFullYear()
         const month = String(d.getMonth() + 1).padStart(2, "0")
@@ -370,9 +416,19 @@ function loadtimeline() {
         hours = hours % 12 || 12
 
         const formattedTime = `${year}/${month}/${day} ${hours}:${minutes} ${ampm}`
-        // --------------------------------
-
-        postsContainer.innerHTML += `
+	throbber.animate(
+      [
+        { transform: 'translateY(0px)' },   // Start position
+        { transform: 'translateY(-45px)' }  // End position
+      ],
+      {
+        duration: 200,       // 2 seconds
+        iterations: 1, // Repeat forever
+        easing: 'ease-in-out' // Smooth acceleration/deceleration
+      }
+)
+	  setTimeout(() => throbbercircle.style.display = 'none', 200); 
+        postsContainer.innerHTML += `	
         <div class="post">
           <div class="flex">
 
