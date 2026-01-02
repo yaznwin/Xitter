@@ -303,7 +303,7 @@
 const API = "https://sheetdb.io/api/v1/czn791c7cj9k4"
 const postsContainer = document.getElementById("posts")
 loadtimeline()
-setInterval(loadtimeline, 2000);
+setInterval(loadtimeline, 10000);
 async function posttweet() {
   const text = document.getElementById("postmakerinput").value.trim();
   if (!text) return alert("Write something first!");
