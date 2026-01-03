@@ -580,6 +580,11 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-blackheader {
+  background-color: rgb(0 0 0 / 60%);
+  backdrop-filter: blur(10px) saturate(180%);
+    z-index: 100;
+  }
   .bg-red-300 {
     background-color: var(--color-red-300);
   }
@@ -853,7 +858,7 @@
   }
   .md\:mx-20 {
     @media (width >= 48rem) {
-      margin-inline: calc(var(--spacing) * 20);
+      margin-inline: calc(var(--spacing) * 17);
     }
   }
   .md\:ml-4 {
@@ -963,7 +968,7 @@
   }
   .md\:pl-20 {
     @media (width >= 48rem) {
-      padding-left: calc(var(--spacing) * 20);
+      padding-left: calc(var(--spacing));
     }
   }
   .md\:pl-24 {
@@ -973,7 +978,7 @@
   }
   .md\:pl-28 {
     @media (width >= 48rem) {
-      padding-left: calc(var(--spacing) * 28);
+      padding-left: calc(var(--spacing) * 8);
     }
   }
   .md\:pl-32 {
