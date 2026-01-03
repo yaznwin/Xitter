@@ -95,7 +95,7 @@
             <span class="material-symbols-outlined cursor-pointer">globe_asia</span>
             <span class="cursor-pointer">Everyone can reply</span>
           </div>
-          <hr class="h-[1px] w-[95%] border-[#2f3336] my-3">
+          <hr id="everyonecanreplyborder" style="display: none;" class="h-[1px] w-[95%] border-[#2f3336] my-3">
 
           <div class="flex justify-between">
 
@@ -222,14 +222,14 @@
           <div class="flex gap-1 px-2">
 
             <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://pbs.twimg.com/profile_images/917631983370461184/bXQjpkDe_bigger.jpg" alt="pz">
+              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt5hcEzLlWWe71KdwE_hP3Sk7yB2q3_5rLDw&s" alt="pz">
             </div>
             <div class="p2">
               <div class="hover:underline cursor-pointer">
-                Preity G Zinta
+                Sean "Diddy" Combs 
               </div>
               <div class="text-gray-500 cursor-pointer">
-                @preityzinta
+                @iamDiddy
               </div>
             </div>
 
@@ -247,14 +247,14 @@
           <div class="flex gap-1 px-2">
 
             <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://pbs.twimg.com/profile_images/1800520500432515073/tMB_rJVh_bigger.jpg" alt="pz">
+              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://files.catbox.moe/084pxb.png" alt="pz">
             </div>
             <div class="p2">
               <div class="hover:underline cursor-pointer">
-                PMO India
+                Apples
               </div>
               <div class="text-gray-500 cursor-pointer">
-                @PMOIndia
+                @apples
               </div>
             </div>
 
@@ -272,14 +272,14 @@
           <div class="flex gap-1 px-2">
 
             <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://pbs.twimg.com/profile_images/1577524629026897920/LHgojmOQ_200x200.jpg" alt="pz">
+              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://files.catbox.moe/1r5j0w.png" alt="pz">
             </div>
             <div class="p2">
               <div class="hover:underline cursor-pointer">
-                Aditi Rao Hydari
+                Azerbaijan Technology
               </div>
               <div class="text-gray-500 cursor-pointer">
-                @aditiraohydaria
+                @AzerbaijanTech
               </div>
             </div>
 
@@ -310,15 +310,17 @@
 const API = "https://script.google.com/macros/s/AKfycbxctig21fEx-vxvkUi_YnHs0Uzo_y7Zqkkgfb55r53Tld1stJbK-FlgKce0YypBz1OX/exec"
 const postsContainer = document.getElementById("posts")
 const input = document.getElementById('postmakerinput');
-const target = document.getElementById('everyonecanreply');
+const everyonecanreply = document.getElementById('everyonecanreply');
+const everyonecanreplyborder = document.getElementById('everyonecanreplyborder');
 const throbber = document.getElementById('timelinethrobbingmymeatriser');
 const throbbercircle = document.getElementById('timelinethrobbingmymeat');
 input.addEventListener('focus', () => {
-  target.style.display = 'flex';
+  everyonecanreply.style.display = 'flex';
+  everyonecanreplyborder.style.display = 'flex';
 });
 
 loadtimeline()
-setInterval(loadtimeline, 15000);
+setInterval(loadtimeline, 10000);
 async function posttweet() {
   const btn = document.querySelector('.postbtn button');
   const originalText = btn.innerText;
@@ -491,7 +493,7 @@ console.log("meow")
         `
       })
     })
-}
+throbber.style.display = 'none';}
 
     </script>
 </body>
