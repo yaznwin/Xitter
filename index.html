@@ -1,5 +1,23 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,538 +38,454 @@
 <meta property="twitter:title" content="Xitter, Impersonate Epstein." />
 <meta property="twitter:description" content="On Xitter you can write tweets as your favorite pedophile and child molester." />
 <meta property="twitter:image" content="https://raw.githubusercontent.com/yaznwin/Xitter/refs/heads/main/NIGGER.png"/>
+    <style>
+        :root {
+            --border: #2f3336;
+            --blue: #1d9bf0;
+            --green: #00ba7c;
+            --red: #f91880;
+            --bg: #000000;
+            --hover: #16181c;
+            --gray: #71767b;
+            /* Added Hover Background Colors */
+            --blue-hover: rgba(29, 155, 240, 0.1);
+            --green-hover: rgba(0, 186, 124, 0.1);
+            --red-hover: rgba(249, 24, 128, 0.1);
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: white; font-family: sans-serif; overflow-x: hidden; }
+
+        .container { display: flex; max-width: 1250px; margin: 0 auto; }
+
+        /* --- SIDEBAR --- */
+        .sidebar { width: 275px; height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; padding: 0 12px; border-right: 1px solid var(--border); }
+        .logo { padding: 12px; cursor: pointer; filter: invert(1); width: fit-content; }
+        .logo svg { width: 30px; }
+        
+        .nav-links { list-style: none; }
+        .nav-item { display: flex; align-items: center; gap: 20px; padding: 12px; width: fit-content; border-radius: 9999px; font-size: 20px; cursor: pointer; transition: 0.2s; }
+        .nav-item:hover { background: var(--hover); }
+        .nav-item img { width: 24px; height: 24px; }
+        .nav-item.bold { font-weight: bold; }
+        
+        .post-btn-lg { background: white; color: black; border: none; width: 90%; padding: 15px; border-radius: 9999px; font-weight: bold; font-size: 17px; margin: 15px 0; cursor: pointer; transition: 0.2s; }
+
+        .profile-switcher { display: flex; align-items: center; padding: 12px; margin-bottom: 12px; border-radius: 9999px; cursor: pointer; transition: 0.2s; gap: 12px; margin-top: auto; }
+        .profile-switcher:hover { background: var(--hover); }
+        .profile-switcher .pfp-sm { width: 40px; height: 40px; border-radius: 50%; }
+        .profile-details { flex: 1; font-size: 15px; overflow: hidden; }
+        .profile-details .handle { color: var(--gray); }
+
+        /* --- FEED & GENERAL --- */
+        .feed { flex: 1; max-width: 600px; border-right: 1px solid var(--border); min-height: 100vh; }
+        .feed-header { position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); display: flex; border-bottom: 1px solid var(--border); z-index: 20; }
+        .tab { flex: 1; text-align: center; padding: 16px; font-weight: bold; cursor: pointer; position: relative; color: var(--gray); }
+        .tab.active { color: white; }
+        .tab.active::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 56px; height: 4px; background: var(--blue); border-radius: 2px; }
+
+        .composer { display: flex; padding: 16px; border-bottom: 1px solid var(--border); }
+        .composer .pfp-cm { width: 48px; height: 48px; border-radius: 50%; margin-right: 12px; }
+        .composer-body { flex: 1; }
+        .composer-body input { width: 100%; background: none; border: none; color: white; font-size: 20px; outline: none; padding: 10px 0; }
+        .composer-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+        .composer-icons { color: var(--blue); display: flex; gap: 12px; }
+        .composer-icons span { cursor: pointer; font-size: 20px; }
+
+        /* --- PROFILE SECTION --- */
+        #profile-view { display: none; }
+        .profile-header-top { display: flex; align-items: center; gap: 30px; padding: 5px 15px; position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); z-index: 30; }
+        .back-btn { cursor: pointer; padding: 8px; border-radius: 50%; }
+        .back-btn:hover { background: var(--hover); }
+        
+        .banner { width: 100%; height: 200px; background: #333; background-image: url('https://files.catbox.moe/qbxvlk.jpg'); background-size: cover; background-position: center; }
+        .profile-info-container { padding: 0 16px; position: relative; margin-bottom: 16px; }
+        .pfp-large { width: 133px; height: 133px; border-radius: 50%; border: 4px solid black; margin-top: -66px; background: black; object-fit: cover; }
+        
+        .edit-profile-btn { float: right; margin-top: 12px; border: 1px solid var(--border); background: none; color: white; padding: 8px 16px; border-radius: 9999px; font-weight: bold; cursor: pointer; }
+        .edit-profile-btn:hover { background: var(--hover); }
+        
+        /* Following State Style */
+        .btn-following { background: black !important; color: white !important; border: 1px solid var(--border) !important; }
+        .btn-following:hover::after { content: "Unfollow"; }
+        .btn-following:hover span { display: none; }
+        .btn-following:hover { border-color: var(--red) !important; color: var(--red) !important; }
+
+        .profile-meta-name { font-size: 20px; font-weight: 800; margin-top: 10px; }
+        .profile-meta-handle { color: var(--gray); font-size: 15px; }
+        .profile-bio { margin: 12px 0; font-size: 15px; line-height: 20px; }
+        .profile-stats { display: flex; gap: 20px; font-size: 14px; color: var(--gray); }
+        .profile-stats b { color: white; }
+
+        /* --- POSTS --- */
+        .post { display: flex; padding: 12px 16px; border-bottom: 1px solid var(--border); gap: 12px; }
+        .post-pfp { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; object-fit: cover; }
+        .post-content { flex: 1; }
+        .post-header { margin-bottom: 4px; font-size: 15px; }
+        .post-author { font-weight: bold; cursor: pointer; }
+        .post-meta { color: var(--gray); margin-left: 4px; }
+        .post-text { font-size: 15px; line-height: 20px; margin-bottom: 12px; }
+        .post-img { width: 100%; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 12px; }
+        
+        .post-actions { display: flex; justify-content: space-between; color: var(--gray); max-width: 425px; }
+        .post-actions div { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; transition: 0.2s; padding: 8px; border-radius: 9999px; }
+
+        /* Specific Hover Actions */
+        .action-comment:hover { color: var(--blue); }
+        .action-repost:hover { color: var(--green); }
+        .action-like:hover { color: var(--red); }
+        .action-stat:hover { color: var(--blue); }
+
+        /* --- WIDGETS --- */
+        .widgets { width: 350px; padding: 0 20px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .search-box { background: #202327; border-radius: 9999px; padding: 12px 16px; margin: 12px 0; display: flex; align-items: center; gap: 12px; }
+        .search-box input { background: none; border: none; color: white; outline: none; width: 100%; }
+        
+        .card { background: #000000; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 16px; overflow: hidden; padding: 12px 0; }
+        .card-header { padding: 4px 16px 12px 16px; font-size: 20px; font-weight: 800; }
+        .card-item { padding: 12px 16px; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; }
+        .card-item:hover { background: #080808; }
+        
+        .premium-btn { background: var(--blue); color: white; border: none; padding: 10px 20px; border-radius: 9999px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+
+        .trend-meta { color: var(--gray); font-size: 13px; }
+        .trend-name { font-weight: bold; font-size: 15px; margin: 2px 0; }
+        .trend-desc { color: var(--gray); font-size: 14px; line-height: 18px; }
+
+        .follow-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; transition: 0.2s; }
+        .follow-row:hover { background: #080808; }
+        .follow-row img { width: 40px; height: 40px; border-radius: 50%; }
+        .follow-info { flex: 1; font-size: 14px; }
+        .follow-info .name { font-weight: bold; }
+        .follow-info .handle { color: var(--gray); }
+        .btn-follow { background: white; color: black; border: none; padding: 8px 16px; border-radius: 9999px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+
+        @media (max-width: 1080px) {
+            .sidebar { width: 80px; align-items: center; }
+            .nav-text, .post-btn-lg, .widgets, .profile-details { display: none; }
+        }
+    </style>
 </head>
-<body class=" bg-black text-white">
-  <div class="flex md:container mx-auto ">
+<body>
 
-     <!-- FIRST  -->
-    <div class="first w-16 md:w-[70%]">
-
-      <div class="sidebar flex md:items-end flex-col sticky top-0">
-
-        <div class="logo invert my-4 mt-3 self-start md:mx-20 mx-3 md:pl-20 cursor-pointer" onclick="playXAudio()">
-  <svg viewBox="0 0 24 24" aria-hidden="true" class="m-auto w-8 r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk">
-    <g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g>
-  </svg>
-  <audio id="x-audio" src="https://files.catbox.moe/q2e8gu.mp3"></audio>
-</div>
-        <ul class="flex flex-col text-xl space-y-3 md:pl-28 w-full"> 
-<li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl font-bold">
-  <span class="text-3xl material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
-  <span class="hidden md:block">Home</span>
-</li>
-
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">search</span><span class="hidden md:block">Explore</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">notifications</span><span class="hidden md:block">Notifications</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">mail</span><span class="hidden md:block">Messages</span></li>
-          <!-- <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">comments_disabled</span><span class="hidden md:block">Grok</span></li> -->
-		  <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><img class="text-3xl material-symbols-outlined" src="https://files.catbox.moe/6o08w8.svg"><span class="hidden md:block">Grok</span></li>
-		  <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><img class="text-3xl material-symbols-outlined" src="https://files.catbox.moe/4kneww.png" style="width: 24px; height: 24px;"></span><span class="hidden md:block">Communities</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><img class="text-3xl material-symbols-outlined" src="https://files.catbox.moe/md1r3q.png" style="width: 24px; height: 24px;"></span><span class="hidden md:block">Premium</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><img class="text-3xl material-symbols-outlined" src="https://files.catbox.moe/ojh97e.png" style="width: 24px; height: 24px;"></span><span class="hidden md:block">Verfied Orgs</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">account_circle</span><span class="hidden md:block">Profile</span></li>
-          <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl"><span class="text-3xl material-symbols-outlined">pending</span><span class="hidden md:block">More</span></li>
-          
-          <li>
-            <div class="post w-full text-center my-4">
-              <button onclick="postmakerinput.focus();" class="md:ml-4 postbtnsidebar hidden md:block bg-white text-black px-25 py-2 text-xl rounded-full cursor-pointer" style="margin-right: 12px;">Post</button>
-              <button class="md:hidden bg-white text-black px-2.5 py-2 rounded-full cursor-pointer"><span class="material-symbols-outlined">edit</span></button>
-            </div>
-          </li>
-
+<div class="container">
+    <aside class="sidebar">
+        <div class="logo" onclick="playXAudio()">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <audio id="x-audio" src="https://files.catbox.moe/q2e8gu.mp3"></audio>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-item bold" id="nav-home" onclick="showHome()"><span class="material-symbols-outlined">home</span><span class="nav-text">Home</span></li>
+            <li class="nav-item"><span class="material-symbols-outlined">search</span><span class="nav-text">Explore</span></li>
+            <li class="nav-item"><span class="material-symbols-outlined">notifications</span><span class="nav-text">Notifications</span></li>
+            <li class="nav-item"><span class="material-symbols-outlined">mail</span><span class="nav-text">Messages</span></li>
+            <li class="nav-item"><img src="https://files.catbox.moe/6o08w8.svg"><span class="nav-text">Grok</span></li>
+            <li class="nav-item"><img src="https://files.catbox.moe/4kneww.png"><span class="nav-text">Communities</span></li>
+            <li class="nav-item"><img src="https://files.catbox.moe/md1r3q.png" style="width: 24px; height: 24px;"><span class="nav-text">Premium</span></li>
+            <li class="nav-item"><img src="https://files.catbox.moe/ojh97e.png"><span class="nav-text">Verified Orgs</span></li>
+            <li class="nav-item" id="nav-profile" onclick="showProfile()"><span class="material-symbols-outlined">account_circle</span><span class="nav-text">Profile</span></li>
+            <li class="nav-item"><span class="material-symbols-outlined">pending</span><span class="nav-text">More</span></li>
         </ul>
+        <button class="post-btn-lg" onclick="focusPostInput()">Post</button>
+        <div class="profile-switcher" onclick="showProfile()">
+            <img class="pfp-sm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10">
+            <div class="profile-details">
+                <div class="name">Jeffery Epstein</div>
+                <div class="handle">@JefferyEpstein</div>
+            </div>
+            <div class="nav-text">···</div>
+        </div>
+    </aside>
 
-        <div class="userprofile w-full mt-0 justify-left  hidden md:flex">
-
-          <div class="item flex items-center justify-center gap-5 mx-5 hover:bg-[#16181c] rounded-full w-fit">           
-
-              <div class="p1">
-                <img class="w-12 h-12 rounded-full cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10" alt="my-profile photo">
-              </div>
-              <div class="p2">
-                <div class="hover:underline cursor-pointer">
-                  Jeffery Epstein
+    <main class="feed">
+        <div id="home-view">
+            <div class="feed-header">
+                <div class="tab active">For You</div>
+                <div class="tab">Following</div>
+            </div>
+            <div class="composer">
+                <img class="pfp-cm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10">
+                <div class="composer-body">
+                    <input id="postmakerinput" type="text" placeholder="How much can i sell my island for?">
+                    <div class="composer-footer">
+                        <div class="composer-icons">
+                            <span class="material-symbols-outlined">imagesmode</span>
+                            <span class="material-symbols-outlined">gif_box</span>
+                            <span class="material-symbols-outlined">sentiment_satisfied</span>
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <button class="btn-follow" style="background: white; color: black; padding: 8px 24px;" onclick="posttweet()">Post</button>
+                    </div>
                 </div>
-                <div class="text-gray-500 cursor-pointer">
-                  @JefferyEpstein
+            </div>
+        </div>
+
+        <div id="profile-view">
+            <div class="profile-header-top">
+                <span class="material-symbols-outlined back-btn" onclick="showHome()">arrow_back</span>
+                <div>
+                    <div style="font-size: 19px; font-weight: 800;">Jeffery Epstein</div>
+                    <div style="font-size: 13px; color: var(--gray);" id="post-count-label">0 posts</div>
                 </div>
-              </div>
-              <div class="p3 text-xl font-bold">···</div>
-            
-          </div>
+            </div>
+            <div class="banner"></div>
+            <div class="profile-info-container">
+                <img class="pfp-large" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10">
+                <div class="profile-meta-name">Jeffery Epstein</div>
+                <div class="profile-meta-handle">@JefferyEpstein</div>
+                <div class="profile-bio">Finance, philanthropy, and exclusive island real estate. Exploring Agartha since '04.</div>
+                <div style="display: flex; gap: 15px; color: var(--gray); font-size: 14px; margin-bottom: 12px;">
+                    <span><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">calendar_month</span> Joined July 2009</span>
+                </div>
+                <div class="profile-stats">
+                    <span><b>1738</b> Following</span>
+                    <span id="follower-count"><b>1.2M</b> Followers</span>
+                </div>
+            </div>
+            <div class="feed-header">
+                <div class="tab active">Posts</div>
+                <div class="tab">Replies</div>
+                <div class="tab">Highlights</div>
+                <div class="tab">Media</div>
+            </div>
         </div>
 
-      </div>
+        <div id="posts"></div>
+    </main>
 
-    </div>
-    <!-- SECOND  -->
+    <aside class="widgets">
+        <div class="search-box">
+            <span class="material-symbols-outlined" style="color: gray;">search</span>
+            <input type="text" placeholder="Search">
+        </div>
 
-    <div class="second w-full border-[1px] border-x-[#2f3336] border-y-black">
+        <div class="card" style="padding: 16px;">
+            <h2 class="card-header" style="padding: 0; margin-bottom: 8px;">Subscribe to Premium</h2>
+            <p style="font-size: 15px; line-height: 20px;">Subscribe to unlock new features and if eligible, receive a share of revenue.</p>
+            <a href="https://files.catbox.moe/lp1dhl.jpg" target="_blank">
+                <button class="premium-btn">Subscribe</button>
+            </a>
+        </div>
 
-      <div class="top flex p-3 sticky top-0 bg-blackheader z-100" style="">
+        <div class="card">
+            <h2 class="card-header">Whats Happening</h2>
+            <div class="card-item">
+                <div>
+                    <div class="trend-name">70 Years of Agartha</div>
+                    <div class="trend-desc">Azerbaijan Technology CEO Celebrates 70 years of Agartha</div>
+                    <div class="trend-meta">Promoted by Palantir</div>
+                </div>
+                <span style="color: var(--gray);">···</span>
+            </div>
+            <div class="card-item">
+                <div>
+                    <div class="trend-meta">Trending in Agartha</div>
+                    <div class="trend-name">#RawMilk</div>
+                    <div class="trend-meta">48.9k posts</div>
+                </div>
+                <span style="color: var(--gray);">···</span>
+            </div>
+            <div class="card-item">
+                <div>
+                    <div class="trend-meta">Sports · Trending</div>
+                    <div class="trend-name">#VWPoloRacing</div>
+                    <div class="trend-meta">9,310 posts</div>
+                </div>
+                <span style="color: var(--gray);">···</span>
+            </div>
+            <div class="card-item">
+                <div>
+                    <div class="trend-meta">Entertainment · Trending</div>
+                    <div class="trend-name">#GayNiggersFromOuterSpace</div>
+                    <div class="trend-meta">2,310 posts</div>
+                </div>
+                <span style="color: var(--gray);">···</span>
+            </div>
+        </div>
 
-        <div class="absolute w-15 h-1 rounded-full bg-[#1d9bf0] bottom-0 left-[20.5%] z-20"></div>
-        <div class="left cursor-pointer flex justify-center w-1/2 font-bold">For You</div>
-        <div class="right cursor-pointer flex justify-center w-1/2 font-bold">Following</div>
+        <div class="card">
+            <h2 class="card-header">Who to Follow</h2>
+            <div class="follow-row">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt5hcEzLlWWe71KdwE_hP3Sk7yB2q3_5rLDw&s">
+                <div class="follow-info">
+                    <div class="name">Sean "Diddy" Combs</div>
+                    <div class="handle">@iamDiddy</div>
+                </div>
+                <button class="btn-follow" id="f-diddy" onclick="toggleFollow('f-diddy')">Follow</button>
+            </div>
+            <div class="follow-row">
+                <img src="https://files.catbox.moe/084pxb.png">
+                <div class="follow-info">
+                    <div class="name">Apples</div>
+                    <div class="handle">@apples</div>
+                </div>
+                <button class="btn-follow" id="f-apples" onclick="toggleFollow('f-apples')">Follow</button>
+            </div>
+            <div class="follow-row">
+                <img src="https://files.catbox.moe/1r5j0w.png">
+                <div class="follow-info">
+                    <div class="name">Azerbaijan Technology</div>
+                    <div class="handle">@AzerbaijanTech</div>
+                </div>
+                <button class="btn-follow" id="f-aztech" onclick="toggleFollow('f-aztech')">Follow</button>
+            </div>
+            <div style="padding: 12px 16px; color: var(--blue); cursor: pointer; font-size: 15px;">Show More</div>
+        </div>
+    </aside>
+</div>
+
+<script>
+    const API = "https://script.google.com/macros/s/AKfycbxctig21fEx-vxvkUi_YnHs0Uzo_y7Zqkkgfb55r53Tld1stJbK-FlgKce0YypBz1OX/exec";
+    
+    // Formatting helper
+    function nFormatter(num) {
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+        return num;
+    }
+
+    // FOLLOW LOGIC
+    function toggleFollow(btnId) {
+        const btn = document.getElementById(btnId);
+        const isFollowing = btn.classList.contains('btn-following');
         
-      </div>
-      <hr class="h-[1px] w-full border-[#2f3336]">
+        if (isFollowing) {
+            btn.classList.remove('btn-following');
+            btn.innerHTML = btnId === 'profile-follow-btn' ? 'Edit profile' : 'Follow';
+        } else {
+            btn.classList.add('btn-following');
+            btn.innerHTML = '<span>Following</span>';
+        }
+    }
 
-      <div class="whatishappening flex">
-        <div class="img m-5 w-15" style="width: 50px; height: 50px; min-width: 30px; min-height: 30px; margin: 16px; flex-shrink: 0;">
-          <img class="rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10" alt="my-profile photo">
-        </div>
+    // NAVIGATION LOGIC - UPDATED TO BOLD/UNBOLD
+    function showProfile() {
+        document.getElementById("home-view").style.display = "none";
+        document.getElementById("profile-view").style.display = "block";
         
-        <div class="w-full">
-		<div>
-          <input id="postmakerinput" class="w-full h-10 mt-6 mb-3 outline-none text-xl" type="text" placeholder="How much can i sell my island for?">
-		</div>
-          <div id="everyonecanreply" style="display: none;" class="text-[#1d9bf0] flex items-center gap-2 font-bold ">
-            <span class="material-symbols-outlined cursor-pointer">globe_asia</span>
-            <span class="cursor-pointer">Everyone can reply</span>
-          </div>
-          <hr id="everyonecanreplyborder" style="display: none;" class="h-[1px] w-[95%] border-[#2f3336] my-3">
-
-          <div class="flex justify-between">
-
-            <div class="blueicons text-[#1d9bf0] flex gap-4 my-3 mt-0 items-center">
-              <span class="material-symbols-outlined cursor-pointer">imagesmode</span>
-              <span class="material-symbols-outlined cursor-pointer">gif_box</span>
-              <span class="material-symbols-outlined cursor-pointer">comments_disabled</span>
-              <span class="material-symbols-outlined cursor-pointer">sentiment_satisfied</span>
-              <span class="material-symbols-outlined cursor-pointer">calendar_clock</span>
-              <span class="material-symbols-outlined cursor-pointer">location_on</span>
-            </div>
-
-            <div class="postbtn mb-3">
-              <button onclick="posttweet()" class="bg-white text-black px-5 py-1 mx-5 mt-0 text-md rounded-full cursor-pointer font-bold" style="width: 110px; text-align: center;">Post</button>
-            </div>
-          </div>
-        </div>
+        // Bolding Logic
+        document.getElementById("nav-profile").classList.add("bold");
+        document.getElementById("nav-home").classList.remove("bold");
         
-      </div>
-      <hr class="h-[1px] w-full border-[#2f3336]">
-	<div id="feedcontainer" style="overflow: hidden; display: flex; flex-direction: column; align-items: left;">
-		<div id="timelinethrobbingmymeatriser" style="display: block;">
-		<div id="timelinethrobbingmymeat" class="loading-circle" style="display: flex;"></div>
+        window.scrollTo({ top: 0 });
+    }
 
-      <div id="posts" class="posts" style="position: relative;">
+    function showHome() {
+        document.getElementById("profile-view").style.display = "none";
+        document.getElementById("home-view").style.display = "block";
+        
+        // Bolding Logic
+        document.getElementById("nav-home").classList.add("bold");
+        document.getElementById("nav-profile").classList.remove("bold");
+        
+        window.scrollTo({ top: 0 });
+    }
 
-        <div class="post">
-        </div>
+    function focusPostInput() {
+        showHome();
+        const input = document.getElementById("postmakerinput");
+        input.focus();
+    }
 
-	</div>
-		</div>
+    function formatTime(isoDate) {
+        const postDate = new Date(isoDate);
+        const seconds = Math.floor((new Date() - postDate) / 1000);
+        if (seconds < 60) return "just now";
+        const intervals = { year: 31536000, month: 2592000, day: 86400, hour: 3600, minute: 60 };
+        for (const [unit, value] of Object.entries(intervals)) {
+            const count = Math.floor(seconds / value);
+            if (count >= 1) return `${count} ${unit}${count > 1 ? 's' : ''} ago`;
+        }
+        return "just now";
+    }
 
-
-        <!-- 2nd POST -->
-
-      </div>
-
-    </div>
-
-    <!-- THIRD  -->
-    <div class="third w-full hidden md:block sticky top-0">
-      <!-- SEARCH BAR -->
-      <div class="search m-3">
-        <input type="text" class="w-2/3 rounded-full border border-[#2f3336] px-4 py-2" placeholder="Search">
-      </div>
-       <!-- SUBSCRIBE  -->
-      <div class="subscribe m-3 w-2/3 py-5 rounded-xl space-y-3 border border-[#2f3336]">
-
-        <h1 class="text-xl font-bold mb-1 px-5">Subscribe to Premium</h1>
-
-        <div class="content p-3 px-5 mb-[-18px]">
-
-          <a href="https://files.catbox.moe/lp1dhl.jpg" target="_blank">
-			<div>Subscribe to unlock new features and if eligible, receive a share of revenue.</div>
-            <button class="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 mt-3 mb-0 font-bold hover:cursor-pointer">Subscribe</button>
-          </a>
-
-        </div>
-
-      </div>
-      <!-- WHATS HAPPENING -->
-      <div class="whats sticky -top-[143px] m-3 border border-[#2f3336] w-2/3 py-5 rounded-xl space-y-3">
-
-        <h1 class="text-xl font-bold px-5">Whats Happening</h1>
-        <!-- ITEMS -->
-        <div class="item p-3 cursor-pointer px-5 my-[1px] ">
-          <div class="flex justify-between">
+    async function loadtimeline() {
+        try {
+            const res = await fetch(API);
+            const posts = await res.json();
+            const container = document.getElementById("posts");
             
-            <div>
-              <div class="font-bold hover:underline">70 Years of Agartha</div>
-              <div class="text-sm text-gray-500">Azerbaijan Technology CEO Celebrates 70 years of Agartha</div>
-              <div class="text-sm text-gray-500">Promoted by Palantir</div>       
-            </div>
-            <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>              
-          </div>
-        </div>
+            const myPosts = posts.filter(p => p.username === "@JefferyEpstein").length;
+            document.getElementById("post-count-label").innerText = `${myPosts} posts`;
 
-        <div class="item p-3 cursor-pointer px-5 my-[1px] ">
-          <div class="flex justify-between">
-            
-            <div>
-              <div class="text-sm text-gray-500">Trending in Agartha</div>
-              <div class="font-bold hover:underline">#RawMilk</div>
-              <div class="text-sm text-gray-500">48.9k posts</div>
-            </div>
-            <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>            
-          </div>
-        </div>
+            container.innerHTML = "";
+            posts.reverse().forEach(p => {
+                // Pulling directly from spreadsheet properties
+                const comments = nFormatter(p.comments || 67);
+                const likes = nFormatter(p.likes || 0);
+                const reposts = nFormatter(p.reposts || 0);
+                const views = nFormatter(p.views || 0);
 
-        <div class="item p-3 cursor-pointer px-5 my-[1px] ">
-          <div class="flex justify-between">
+                container.innerHTML += `
+                    <div class="post">
+                        <img class="post-pfp" src="${p.pfp}">
+                        <div class="post-content">
+                            <div class="post-header">
+                                <span class="post-author">${p.author}</span>
+                                <span class="post-meta">${p.username} · ${formatTime(p.time)}</span>
+                            </div>
+                            <div class="post-text">${p.text}</div>
+                            ${p.image ? `<img class="post-img" src="${p.image}">` : ""}
+                            <div class="post-actions">
+                                <div class="action-comment"><span class="material-symbols-outlined" style="font-size: 19px;">chat_bubble</span> ${comments}</div>
+                                <div class="action-repost"><span class="material-symbols-outlined" style="font-size: 19px;">repeat</span> ${reposts}</div>
+                                <div class="action-like"><span class="material-symbols-outlined" style="font-size: 19px;">favorite</span> ${likes}</div>
+                                <div class="action-stat"><span class="material-symbols-outlined" style="font-size: 19px;">bar_chart</span> ${views}</div>
+                                <div class="action-stat"><span class="material-symbols-outlined" style="font-size: 19px;">bookmark</span></div>
+                                <div class="action-stat"><span class="material-symbols-outlined" style="font-size: 19px;">upload</span></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        } catch(e) {}
+    }
 
-            <div>
-              <div class="text-sm text-gray-500">Sports · Trending</div>
-              <div class="font-bold hover:underline">#VWPoloRacing</div>
-              <div class="text-sm text-gray-500">9,310 posts</div>
-            </div>
-            <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>
+    async function posttweet() {
+    const input = document.getElementById("postmakerinput");
+    const btn = document.querySelector(".composer .btn-follow");
+    const text = input.value.trim();
+    if (!text) return;
 
-          </div>
-        </div>
+    btn.innerText = "Posting...";
+    btn.disabled = true;
 
-        <div class="item p-3 cursor-pointer px-5 my-[1px] ">
-          <div class="flex justify-between">
-            
-            <div>
-              <div class="text-sm text-gray-500">Entertainment · Trending</div>
-              <div class="font-bold hover:underline">#GayNiggersFromOuterSpace</div>
-              <div class="text-sm text-gray-500">2,310 posts</div>
-            </div>
-            <div class="p3 text-xl font-bold text-gray-500 hover:text-[#1d9bf0]">···</div>
-          </div>
-        </div>
+    // Randomization Logic
+    const randomLikes = Math.floor(Math.random() * 200) + "K";
+    const randomReposts = Math.floor(Math.random() * 150) + "K";
+    const randomComments = Math.floor(Math.random() * 10) + "K";
+    const randomViews = Math.floor(Math.random() * 3000) + "K";
 
-      </div>
-
-      <!-- WHO TO FOLLOW -->
-
-      <div class="who sticky top-[42vh] m-3 border border-[#2f3336] w-2/3 py-5 rounded-xl space-y-1">
-
-        <h1 class="text-xl font-bold px-5">Who to Follow</h1>        
-
-        <!-- 1st -->
-        <div class="item p-3 flex items-center justify-between gap-1">
-
-          <div class="flex gap-1 px-2">
-
-            <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt5hcEzLlWWe71KdwE_hP3Sk7yB2q3_5rLDw&s" alt="pz">
-            </div>
-            <div class="p2">
-              <div class="hover:underline cursor-pointer">
-                Sean "Diddy" Combs 
-              </div>
-              <div class="text-gray-500 cursor-pointer">
-                @iamDiddy
-              </div>
-            </div>
-
-          </div>
-          <div class="p3">
-            <button class="bg-white text-black px-4 py-2 rounded-full font-bold cursor-pointer">Follow</button>
-          </div>
-
-        </div>
-
-        <!-- 2nd -->
-
-        <div class="item p-3 flex items-center justify-between gap-1">
-
-          <div class="flex gap-1 px-2">
-
-            <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://files.catbox.moe/084pxb.png" alt="pz">
-            </div>
-            <div class="p2">
-              <div class="hover:underline cursor-pointer">
-                Apples
-              </div>
-              <div class="text-gray-500 cursor-pointer">
-                @apples
-              </div>
-            </div>
-
-          </div>
-          <div class="p3">
-            <button class="bg-white text-black px-4 py-2 rounded-full font-bold cursor-pointer">Follow</button>
-          </div>
-
-        </div>
-
-        <!-- 3rd -->
-
-        <div class="item p-3 flex items-center justify-between gap-1">
-
-          <div class="flex gap-1 px-2">
-
-            <div class="p1">
-              <img class="w-12 h-12 rounded-full cursor-pointer" src="https://files.catbox.moe/1r5j0w.png" alt="pz">
-            </div>
-            <div class="p2">
-              <div class="hover:underline cursor-pointer">
-                Azerbaijan Technology
-              </div>
-              <div class="text-gray-500 cursor-pointer">
-                @AzerbaijanTech
-              </div>
-            </div>
-
-          </div>
-          <div class="p3">
-            <button class="bg-white text-black px-4 py-2 rounded-full font-bold cursor-pointer">Follow</button>
-          </div>
-
-        </div>
-
-        <div class="text-blue-600 hover:underline my-1 px-5 cursor-pointer">Show More</div>        
-
-      </div>
-
-      <!-- TERMS -->
-
-      <div class="terms sticky top-[88vh] m-3 w-2/3 py-5 space-y-1 text-gray-500 text-xs">
-        <span class="hover:underline cursor-pointer mr-2">Terms of Service  |</span>
-        <span class="hover:underline cursor-pointer mr-2">Privacy Policy  |</span>
-        <span class="hover:underline cursor-pointer mr-2">Cookie Policy  |</span>
-        <span class="hover:underline cursor-pointer mr-2">More...</span>
-        <span class="hover:underline cursor-pointer mr-2">© 2025 X Corp.</span>
-      </div>
-
-    </div>
-  </div>
-    <script>
-const API = "https://script.google.com/macros/s/AKfycbxctig21fEx-vxvkUi_YnHs0Uzo_y7Zqkkgfb55r53Tld1stJbK-FlgKce0YypBz1OX/exec"
-const postsContainer = document.getElementById("posts")
-const input = document.getElementById('postmakerinput');
-const everyonecanreply = document.getElementById('everyonecanreply');
-const everyonecanreplyborder = document.getElementById('everyonecanreplyborder');
-const throbber = document.getElementById('timelinethrobbingmymeatriser');
-const throbbercircle = document.getElementById('timelinethrobbingmymeat');
-input.addEventListener('focus', () => {
-  everyonecanreply.style.display = 'flex';
-  everyonecanreplyborder.style.display = 'flex';
-});
-
-loadtimeline()
-setInterval(loadtimeline, 10000);
-async function posttweet() {
-  const btn = document.querySelector('.postbtn button');
-  const originalText = btn.innerText;
-  btn.innerText = "Posting...";
-  btn.style.backgroundColor = "#808080"; // Turn gray
-  btn.style.cursor = "not-allowed";      // Show it's busy
-  btn.disabled = true;
-  const text = document.getElementById("postmakerinput").value.trim();
-  if (!text) return alert("Write something first!");
-
-  const data = {
-    data: [
-      {
-        author: "Jeffery Epstein",        // or dynamic
-        username: "@JefferyEpstein",
-        time: greenwichtime(),
-        text: text,
-        pfp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10",
-        image: "",                   // empty unless you add uploads
-        comments: Math.floor(Math.random() * 10) + "K",
-        reposts: Math.floor(Math.random() * 150) + "K",
-        likes: Math.floor(Math.random() * 200) + "K",
-        views: Math.floor(Math.random() * 3000) + "K"
-      }
-    ]
-  };
-const body = JSON.stringify(data)
-
-
-await fetch(API, {
-  method: 'POST',
-  mode: 'no-cors', // Essential for basic Web App requests to avoid CORS issues
-  cache: 'no-cache',
-  headers: {
-    'Content-Type': 'text/plain;charset=utf-8'
-  },
-  body: JSON.stringify(data)
-})
-.then(() => console.log('Data successfully sent'))
-.catch(error => console.error('Error!', error.message));
-
-  document.getElementById("postmakerinput").value = ""; // clear input
-	btn.innerText = originalText;
-       btn.style.backgroundColor = ""; // Resets to the class color (white)
-       btn.style.cursor = "pointer";
-       btn.disabled = false;
-  loadtimeline()
-}
-
-function greenwichtime() {
-  return new Date().toISOString();
-}
-function loadtimeline() {
-throbbercircle.style.display = 'block', 300
-throbber.animate(
-      [
-        { transform: 'translateY(-45px)' },   // Start position
-        { transform: 'translateY(0px)' }  // End position
-      ],
-      {
-        duration: 400,       // 2 seconds
-        iterations: 1, // Repeat forever
-        easing: 'ease-in-out' // Smooth acceleration/deceleration
-      }
-)
-console.log("meow")
-// throbber.style.display = 'blo';
-  fetch(API)
-    .then(res => res.json())
-    .then(posts => {
-      postsContainer.innerHTML = ""
-
-      posts.reverse().forEach(p => {	
- const postDate = new Date(p.time);
-
-  let seconds = Math.floor((new Date() - postDate) / 1000);
-
-  if (seconds < 0) {
-    var formattedTime = "just now"; 
-  } else {
-    const intervals = {
-      year: 31536000,
-      month: 2592000,
-      day: 86400,
-      hour: 3600,
-      minute: 60
+    const data = { 
+        data: [{ 
+            author: "Jeffery Epstein", 
+            username: "@JefferyEpstein", 
+            time: new Date().toISOString(), 
+            text: text, 
+            pfp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10",
+            // Added randomized stats here
+            likes: randomLikes,
+            reposts: randomReposts,
+            comments: randomComments,
+            views: randomViews
+        }] 
     };
 
-    var formattedTime = "just now";
-    for (const [unit, value] of Object.entries(intervals)) {
-      const count = Math.floor(seconds / value); 
-      if (count >= 1) {
-        formattedTime = `${count} ${unit}${count > 1 ? 's' : ''} ago`;
-        break;
-      }
-    }
-  }
-	throbber.animate(
-      [
-        { transform: 'translateY(0px)' },   // Start position
-        { transform: 'translateY(-45px)' }  // End position
-      ],
-      {
-        duration: 200,       // 2 seconds
-        iterations: 1, // Repeat forever
-        easing: 'ease-in-out' // Smooth acceleration/deceleration
-      }
-)
-	  setTimeout(() => throbbercircle.style.display = 'none', 200); 
-        postsContainer.innerHTML += `	
-        <div class="post">
-          <div class="flex">
-
-            <div class="image m-4" style="width: 40px; height: 40px; min-width: 40px; min-height: 40px; margin: 16px; flex-shrink: 0;">
-              <img class="rounded-full cursor-pointer w-full h-full object-cover"
-                   src="${p.pfp}"
-                   alt="pfp">
-            </div>
-
-            <div class="content my-3">
-              <span class="font-bold hover:underline cursor-pointer">
-                ${p.author}
-              </span>
-              <span class="text-gray-400">
-                ${p.username} · ${formattedTime}
-              </span>
-
-              <div>${p.text}</div>
-
-              ${p.image ? `
-              <div class="postimg m-4 ml-0">
-                <img class="rounded-2xl"
-                     src="${p.image}"
-                     alt="post image">
-              </div>
-              ` : ""}
-
-              <div class="icons flex m-3 justify-around">
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">chat_bubble</span>${p.comments}
-                </div>
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#28a745] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">repeat</span>${p.reposts}
-                </div>
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#dc3545] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">favorite</span>${p.likes}
-                </div>
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">bar_chart</span>${p.views}
-                </div>
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">bookmark</span>
-                </div>
-
-                <div class="icon flex items-center justify-around cursor-pointer hover:text-[#1d9bf0] text-gray-500 gap-1">
-                  <span class="material-symbols-outlined">upload</span>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <hr class="h-[1px] w-full border-[#2f3336]">
-        `
-      })
-    })
-// throbber.style.display = 'flex';
-}
-// 1. Select all buttons inside the 'Who to follow' section
-const followButtons = document.querySelectorAll('.who button');
-
-// 2. Loop through each button and add a click event listener
-followButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
+    await fetch(API, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
     
-    // Check if the current text is "Follow"
-    if (btn.innerText.trim() === "Follow") {
-      
-      // Change text to "Following"
-      btn.innerText = "Following";
-      
-      // Update Styles: Remove white bg, add border and white text
-      btn.classList.remove('bg-white', 'text-black'); 
-      btn.classList.add('bg-transparent', 'text-white', 'border', 'border-[#536471]'); 
-      
-    } else {
-      
-      // Revert back to "Follow"
-      btn.innerText = "Follow";
-      
-      // Revert Styles: Add white bg, remove border
-      btn.classList.add('bg-white', 'text-black');
-      btn.classList.remove('bg-transparent', 'text-white', 'border', 'border-[#536471]');
-    }
-  });
-});
-function playXAudio() {
-  const audio = document.getElementById('x-audio');
-  
-  // Set volume to 50%
-  audio.volume = 0.2; 
-  
-  audio.currentTime = 0; // Rewind to start for spam-clicking
-  audio.play().catch(error => {
-    console.log("Playback failed. Interaction may be required.", error);
-  });
+    input.value = "";
+    btn.innerText = "Post";
+    btn.disabled = false;
+    loadtimeline();
 }
-    </script>
+
+    function playXAudio() {
+        const audio = document.getElementById('x-audio');
+        audio.volume = 0.2; audio.currentTime = 0; audio.play().catch(() => {});
+    }
+
+    loadtimeline();
+    setInterval(loadtimeline, 10000);
+</script>
 </body>
 </html>
