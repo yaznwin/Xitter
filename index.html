@@ -503,7 +503,35 @@ console.log("meow")
     })
 // throbber.style.display = 'flex';
 }
+// 1. Select all buttons inside the 'Who to follow' section
+const followButtons = document.querySelectorAll('.who button');
 
+// 2. Loop through each button and add a click event listener
+followButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    
+    // Check if the current text is "Follow"
+    if (btn.innerText.trim() === "Follow") {
+      
+      // Change text to "Following"
+      btn.innerText = "Following";
+      
+      // Update Styles: Remove white bg, add border and white text
+      btn.classList.remove('bg-white', 'text-black'); 
+      btn.classList.add('bg-transparent', 'text-white', 'border', 'border-[#536471]'); 
+      
+    } else {
+      
+      // Revert back to "Follow"
+      btn.innerText = "Follow";
+      
+      // Revert Styles: Add white bg, remove border
+      btn.classList.add('bg-white', 'text-black');
+      btn.classList.remove('bg-transparent', 'text-white', 'border', 'border-[#536471]');
+    }
+    
+  });
+});
     </script>
 </body>
 </html>
