@@ -19,15 +19,16 @@
   <div class="flex md:container mx-auto ">
 
      <!-- FIRST  -->
-
     <div class="first w-16 md:w-[70%]">
 
       <div class="sidebar flex md:items-end flex-col sticky top-0">
 
-        <div class="logo invert my-4 mt-3 self-start md:mx-20 mx-3 md:pl-20">
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="m-auto w-8 r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
-        </div>
-
+        <div class="logo invert my-4 mt-3 self-start md:mx-20 mx-3 md:pl-20 cursor-pointer" onclick="playXAudio()">
+  <svg viewBox="0 0 24 24" aria-hidden="true" class="m-auto w-8 r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-lrsllp r-18jsvk2 r-16y2uox r-8kz0gk">
+    <g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g>
+  </svg>
+  <audio id="x-audio" src="https://files.catbox.moe/q2e8gu.mp3"></audio>
+</div>
         <ul class="flex flex-col text-xl space-y-3 md:pl-28 w-full"> 
 <li class="flex md:justify-start mb-0 items-center justify-center gap-3 md:w-fit hover:bg-gray-900 hover:cursor-pointer md:px-5 mx-4 py-3 hover:rounded-4xl font-bold">
   <span class="text-3xl material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
@@ -531,9 +532,19 @@ followButtons.forEach(btn => {
       btn.classList.add('bg-white', 'text-black');
       btn.classList.remove('bg-transparent', 'text-white', 'border', 'border-[#536471]');
     }
-    
   });
 });
+function playXAudio() {
+  const audio = document.getElementById('x-audio');
+  
+  // Set volume to 50%
+  audio.volume = 0.2; 
+  
+  audio.currentTime = 0; // Rewind to start for spam-clicking
+  audio.play().catch(error => {
+    console.log("Playback failed. Interaction may be required.", error);
+  });
+}
     </script>
 </body>
 </html>
