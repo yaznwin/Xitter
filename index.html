@@ -176,7 +176,7 @@
 <div class="container">
     <aside class="sidebar">
         <div class="logo" onclick="playXAudio()">
-            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            <svg viewBox="0 0 24 24"><path d="M21.742 21.75l-7.563-11.179 7.056-8.321h-2.456l-5.691 6.714-4.54-6.714H2.359l7.29 10.776L2.25 21.75h2.456l6.035-7.118 4.818 7.118h6.191-.008zM7.739 3.818L18.81 20.182h-2.447L5.29 3.818h2.447z"></path></svg>
             <audio id="x-audio" src="https://files.catbox.moe/q2e8gu.mp3"></audio>
         </div>
         <ul class="nav-links">
@@ -195,8 +195,8 @@
         <div class="profile-switcher" onclick="showProfile()">
             <img class="pfp-sm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10">
             <div class="profile-details">
-                <div class="name">Jeffery Epstein</div>
-                <div class="handle">@JefferyEpstein</div>
+                <div class="name">Jeffrey Epstein</div>
+                <div class="handle">@JeffreyEpstein</div>
             </div>
             <div class="nav-text">···</div>
         </div>
@@ -240,16 +240,16 @@
             <div class="profile-header-top">
                 <span class="material-symbols-outlined back-btn" onclick="showHome()">arrow_back</span>
                 <div>
-                    <div style="font-size: 19px; font-weight: 800;">Jeffery Epstein</div>
+                    <div style="font-size: 19px; font-weight: 800;">Jeffrey Epstein</div>
                     <div style="font-size: 13px; color: var(--gray);" id="post-count-label">0 posts</div>
                 </div>
             </div>
             <div class="banner"></div>
             <div class="profile-info-container">
                 <img class="pfp-large" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10">
-                <div class="profile-meta-name">Jeffery Epstein</div>
-                <div class="profile-meta-handle">@JefferyEpstein</div>
-                <div class="profile-bio">Finance, philanthropy, and exclusive island real estate. Exploring Agartha since '04.</div>
+                <div class="profile-meta-name">Jeffrey Epstein</div>
+                <div class="profile-meta-handle">@JeffreyEpstein</div>
+                <div class="profile-bio">Financer, daycare worker, and exclusive island owner. Exploring children since 2004.</div>
                 <div style="display: flex; gap: 15px; color: var(--gray); font-size: 14px; margin-bottom: 12px;">
                     <span><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">calendar_month</span> Joined July 2009</span>
                 </div>
@@ -480,7 +480,7 @@
         const container = document.getElementById("posts");
 
         // Update Profile Post Count
-        const myPosts = posts.filter(p => p.username === "@JefferyEpstein").length;
+        const myPosts = posts.filter(p => p.username === "@JeffreyEpstein").length;
         document.getElementById("post-count-label").innerText = `${myPosts} posts`;
 
         // --- SEARCH FILTER LOGIC ---
@@ -573,8 +573,8 @@
 
     const data = { 
         data: [{ 
-            author: "Jeffery Epstein", 
-            username: "@JefferyEpstein", 
+            author: "Jeffrey Epstein", 
+            username: "@JeffreyEpstein", 
             time: new Date().toISOString(), 
             text: text, 
             pfp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKKnse2On5K-_uD_VCZbqDwELwOsgu3gE4LtVaDTI4PJFFsmvNZofwITsC&s=10",
